@@ -56,3 +56,32 @@ SELECT ABS(-25.768233), SIGN(-25.768233), ROUND(-25.768233, 2);
 -- Write a query to return just the month portion of the current date. 
 --
 SELECT EXTRACT(MONTH FROM CURRENT_DATE());
+
+--
+-- Exercise 8-1
+--
+-- Construct a query that counts the number of rows in the payment table.
+--
+SELECT COUNT(*) FROM payment;
+
+--
+-- Exercise 8-2
+--
+-- Modify your query from Exercise 8-1 to count the number of payments made by
+-- each customer. Show the customer ID and the total amount paid for each
+-- customer.
+--
+SELECT customer_id, COUNT(*), SUM(amount)
+FROM payment
+GROUP BY customer_id;
+
+--
+-- Exercise 8-3
+--
+-- Modify your query from Exercise 8-2 to include only those customers who have
+-- made at least 40 payments.
+--
+SELECT customer_id, COUNT(*), SUM(amount)
+FROM payment
+GROUP BY customer_id
+HAVING COUNT(*) >= 40;
